@@ -54,7 +54,12 @@ export default class ListEmployees extends React.Component{
     })
   }
 
+  disableEmployee = (employee) => () => {
+    // eliminar de la lista
+    console.log(employee)
+  }
 
+  
   render(){
     return (
       <div>
@@ -63,7 +68,7 @@ export default class ListEmployees extends React.Component{
         <RaisedButton label="Agregar" onClick={this.handleOpen} primary={true} className="button-add"/>
 
         {this.state.employees.map((employee) =>{
-          return (<Employee employee={employee} key={employee.id} enClick={this.handleEmployeeClick}/>)
+          return (<Employee employee={employee} key={employee.id} enClick={this.handleEmployeeClick} onDisable={this.disableEmployee}/>)
         })}
 
       </div>

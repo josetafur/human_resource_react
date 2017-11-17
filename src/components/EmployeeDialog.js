@@ -11,7 +11,12 @@ export default class EmployeeDialog extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-        errors: []
+        errors: [],
+        name: '',
+        last_name: '',
+        job_position: '',
+        team: '',
+        phone: ''
     }
   }
 
@@ -20,7 +25,7 @@ export default class EmployeeDialog extends React.Component{
   }
 
   handleClick = ()=>{
-    const employee = {
+    const data = {
       name: this.state.name,
       last_name: this.state.last_name,
       job_position: this.state.job_position,
@@ -30,11 +35,11 @@ export default class EmployeeDialog extends React.Component{
 
     axios.post(
         'http://localhost:3000/api/v1/employees',
-        { employee }
+        { employee: data }
     )
     .then(response=>{
       this.props.onSubmit(response.data)
-      this.setState({open: false});
+      this.props.onClose()
     })
     .catch(error =>{
       this.state.errors = error.response.data
@@ -47,7 +52,7 @@ export default class EmployeeDialog extends React.Component{
         <Dialog title="Nuevo trabajador" modal={false} open={this.props.open} onRequestClose={this.props.onClose}>
 
           <form >
-            <TextField hintText="Ingrese nombre" value={this.props.currentEmployee.name} name="name" onChange={this.handleInput}  ref={this.props.nameRef} /><br/>
+            <TextField hintText="Ingrese nombre" value={this.props.currentEmployee.name} name="name" onChange={this.handleInput} /><br/>
             <TextField hintText="Ingrese apellidos" value={this.props.currentEmployee.last_name} name="last_name" onChange={this.handleInput}/><br/>
             <TextField hintText="Ingrese ocupación" value={this.props.currentEmployee.job_position} name="job_position" onChange={this.handleInput}/><br/>
             <TextField hintText="Ingrese equipo" value={this.props.currentEmployee.team} name="team" onChange={this.handleInput} /><br/>

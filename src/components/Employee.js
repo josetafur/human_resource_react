@@ -20,6 +20,10 @@ export default class Employee extends Component{
           <IconButton onClick={this.props.enClick(this.props.employee)}>
               <FontIcon className="material-icons">edit</FontIcon>
           </IconButton>
+
+          <IconButton onClick={this.props.onDisable(this.props.employee)}>
+              <FontIcon className="material-icons">delete</FontIcon>
+          </IconButton>
         </CardText>
       </Card>
     )
