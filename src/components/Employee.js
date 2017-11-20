@@ -10,13 +10,13 @@ export default class Employee extends Component{
 
   render(){
     return(
-      <TableRow key={this.props.employee.id}>
+      <TableRow key={this.props.employee.id} className={this.props.employee.state == 0 ? 'active' : 'desactive'}>
         <TableRowColumn>{this.props.employee.id}</TableRowColumn>
         <TableRowColumn>{this.props.employee.name}</TableRowColumn>
         <TableRowColumn>{this.props.employee.last_name}</TableRowColumn>
         <TableRowColumn>{this.props.employee.job_position}</TableRowColumn>
         <TableRowColumn>{this.props.employee.team}</TableRowColumn>
-        <TableRowColumn>{this.props.employee.phone}</TableRowColumn>
+        <TableRowColumn>{this.props.employee.phone || '-'}</TableRowColumn>
         <TableRowColumn>{this.props.employee.state == 0 ? 'Activo' : 'Desactivado'}</TableRowColumn>
 
         <TableRowColumn>

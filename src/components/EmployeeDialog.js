@@ -4,6 +4,7 @@ import Dialog from 'material-ui/Dialog';
 
 import EmployeeForm from './EmployeeForm';
 import ErrorNotification from './ErrorNotification';
+import domain from '../consts/domain';
 
 export default class EmployeeDialog extends React.Component{
 
@@ -13,7 +14,7 @@ export default class EmployeeDialog extends React.Component{
 
   createEmployee = (employee)=>{
     axios.post(
-        'http://localhost:3000/api/v1/employees',
+        domain.local+'/api/v1/employees',
         { employee: employee }
     )
     .then(response=>{
@@ -28,7 +29,7 @@ export default class EmployeeDialog extends React.Component{
 
   updateEmployee = (employee)=>{
     axios.put(
-      "http://localhost:3000/api/v1/employees/"+this.props.currentEmployee.id,
+      domain.local+"/api/v1/employees/"+this.props.currentEmployee.id,
       {
           employee: employee
       })

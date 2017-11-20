@@ -40,13 +40,39 @@ export default class EmployeeForm extends React.Component{
   render(){
     return(
       <form>
-        <TextField floatingLabelText="Ingrese nombre" value={this.state.name || ''} name="name" onChange={this.handleInput} /><br/>
-        <TextField floatingLabelText="Ingrese apellidos" value={this.state.last_name || ''} name="last_name" onChange={this.handleInput}/><br/>
-        <TextField floatingLabelText="Ingrese ocupación" value={this.state.job_position || ''} name="job_position" onChange={this.handleInput}/><br/>
-        <TextField floatingLabelText="Ingrese equipo" value={this.state.team || ''} name="team" onChange={this.handleInput} /><br/>
-        <TextField floatingLabelText="Ingrese teléfono" value={this.state.phone || ''} name="phone" onChange={this.handleInput} /><br/>
+        <div className="row">
+          <div className="col-xs">
+            <div className="box">
+              <TextField floatingLabelText="Ingrese nombre" value={this.state.name || ''} name="name" onChange={this.handleInput} />
+            </div>
+          </div>
+          <div className="col-xs">
+            <div className="box">
+              <TextField floatingLabelText="Ingrese apellidos" value={this.state.last_name || ''} name="last_name" onChange={this.handleInput}/>
+            </div>
+          </div>
+          <div className="col-xs">
+            <div className="box">
+              <TextField floatingLabelText="Ingrese ocupación" value={this.state.job_position || ''} name="job_position" onChange={this.handleInput}/><br/>
+            </div>
+          </div>
+          <div className="col-xs">
+            <div className="box">
+              <TextField floatingLabelText="Ingrese equipo" value={this.state.team || ''} name="team" onChange={this.handleInput} /><br/>
+            </div>
+          </div>
+          <div className="col-xs">
+            <div className="box">
+              <TextField floatingLabelText="Ingrese teléfono" value={this.state.phone || ''} name="phone" onChange={this.handleInput} /><br/>
+            </div>
+          </div>
+        </div>
 
-        <RaisedButton label="Grabar" onClick={this.save} primary={true} ></RaisedButton>
+        <div className="row top-space">
+          <div className="col-xs-12">
+            <RaisedButton label="Grabar" onClick={this.save} primary={true} ></RaisedButton>
+          </div>
+        </div>
       </form>
     )
   }

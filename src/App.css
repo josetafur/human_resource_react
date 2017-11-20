@@ -44,3 +44,35 @@
   bottom: 5px;
   right: 5px;
 }
+
+.top-space{
+  margin-top: 1.5rem;
+}
+
+.employee-active{
+  background-color: #689F38 !important;
+  height: 13px;
+  width: 30px;
+  display: inline-block;
+}
+
+.active{
+  background-color: #689F38;
+}
+
+.desactive{
+  background-color: #FFAB40;
+}
+
+.employee-desactive{
+  background-color: #FFAB40 !important;
+  height: 13px;
+  width: 30px;
+  display: inline-block;
+  margin-left: 2em;
+}
+
+table td, table th{
+  border-color: purple;
+  border-style: solid;
+}
