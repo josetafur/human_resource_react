@@ -11,11 +11,9 @@ export default class ErrorNotification extends React.Component{
     return(
       <div>
         <p style={{'color': redA400}}>Errores</p>
-        <ul>
-          {this.props.errors.map((error) =>{
-            <li>
-              {error}
-            </li>
+        <ul style={{'color': redA400}}>
+          {this.props.errors.map((error,index) =>{
+            return (<li key={'error_' + index}>{error}</li>)
           })}
         </ul>
       </div>
