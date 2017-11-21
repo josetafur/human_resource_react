@@ -7,7 +7,7 @@ import AutoComplete from 'material-ui/AutoComplete';
 
 import Employee from '../components/Employee';
 import EmployeeDialog from '../components/EmployeeDialog';
-// import EmployeeHeader from '../components/EmployeeHeader';
+import EmployeeFilterSkills from '../components/EmployeeFilterSkills';
 import domain from '../consts/domain';
 
 
@@ -153,6 +153,9 @@ export default class EmployeeContainer extends React.Component{
               <div className='employee-active'></div><span>Activados</span>
               <div className='employee-desactive'></div><span>Desactivados</span>
             </div>
+
+
+            <EmployeeFilterSkills />
 
             <Table>
               <TableHeader displaySelectAll={false} adjustForCheckbox={false}>

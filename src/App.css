@@ -80,3 +80,7 @@ table td, table th{
 .margin-left{
   margin-left: 1.5em;
 }
+
+.inline-block{
+  display: inline-block;
+}
