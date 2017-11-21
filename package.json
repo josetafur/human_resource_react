@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
-    "immutability-helper": "^2.5.0",
     "material-ui": "^0.19.4",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",

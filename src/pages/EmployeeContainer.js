@@ -136,7 +136,6 @@ export default class EmployeeContainer extends React.Component{
   //     }
   //   })
   // }
-
   render(){
     // <EmployeeHeader onAll={this.load_employees} onSelected={this.select_employee}/>
     return(
@@ -179,6 +178,7 @@ export default class EmployeeContainer extends React.Component{
               </TableBody>
             </Table>
           </div>
+
         </div>
     )
   }
