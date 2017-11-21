@@ -10,7 +10,10 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <EmployeeContainer />
+        <div>
+          <Navbar />
+          <EmployeeContainer />
+        </div>
       </MuiThemeProvider>
     );
   }

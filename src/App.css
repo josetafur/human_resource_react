@@ -76,3 +76,7 @@ table td, table th{
   border-color: purple;
   border-style: solid;
 }
+
+.margin-left{
+  margin-left: 1.5em;
+}

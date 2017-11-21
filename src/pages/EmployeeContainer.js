@@ -1,12 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn } from 'material-ui/Table';
+import { Table, TableBody, TableHeader, TableHeaderColumn, TableRow } from 'material-ui/Table';
 import AutoComplete from 'material-ui/AutoComplete';
 
 
 import Employee from '../components/Employee';
 import EmployeeDialog from '../components/EmployeeDialog';
+// import EmployeeHeader from '../components/EmployeeHeader';
 import domain from '../consts/domain';
 
 
@@ -21,20 +22,28 @@ export default class EmployeeContainer extends React.Component{
       isEdit: false,
       errors: [],
       dataSource: [],
-
       dataSourceConfig: {
-        text: 'textKey',
-        value: 'valueKey',
-      }
+        text: 'name',
+        value: 'id',
+      },
+      currentEmployeeFiltered: {}
     }
 
     this.addEmployee = this.addEmployee.bind(this)
   }
 
   componentDidMount(){
+    this.load_employees();
+  }
+
+  load_employees = () => {
     axios.get(domain.local+'/api/v1/employees.json')
     .then(response=>{
-      this.setState({employees: response.data})
+      console.log(response.data)
+      this.setState({
+        employees: response.data,
+        currentEmployeeFiltered: {}
+      })
     })
     .catch(err => console.log(err))
   }
@@ -42,7 +51,8 @@ export default class EmployeeContainer extends React.Component{
   addEmployee = (employee) => {
     this.setState(prevState => {
       return {
-        employees: [...prevState.employees, employee]
+        employees: [...prevState.employees, employee],
+        currentEmployeeFiltered: {}
       }
     })
   }
@@ -54,7 +64,8 @@ export default class EmployeeContainer extends React.Component{
 
     this.setState((prevState)=>{
       return{
-        employees: new_employees
+        employees: new_employees,
+        currentEmployeeFiltered: employee
       }
     })
   }
@@ -98,44 +109,47 @@ export default class EmployeeContainer extends React.Component{
 //  ********  FUNCIONALIDAD EN PRUEBA - AUTOCOMPLETE ****************
 
   autocompleteText = (value)=>{
-    axios.get("http://localhost:3000/api/v1/employees/autocomplete?term="+value)
+    if(value.trim().length === 0) return false;
+    axios.get(domain.local+"/api/v1/employees/autocomplete?term="+value)
     .then((response)=>{
-      // const dataSource = [{textKey: 'demo', valueKey: 1},{textKey: 'demoxxx', valueKey: 2}]
       this.setState({dataSource: response.data.map((el)=>{
         var obj = {};
-        obj.textKey = el.name;
-        obj.valueKey = el.id
+        obj.name = el.name;
+        obj.id = el.id
         return obj
       })})
-      // this.setState({dataSource: dataSource})
     })
   }
 
   selectElementAutocomplete = (value) => {
-    this.setState((prevState)=>{
-      let new_array = []
-      const new_employees = prevState.employees.find(el=> el.id === value.valueKey)
-      new_array.push(new_employees)
-      return{
-        employees: new_array
-      }
-    })
-    // this.setState({employees: this.state.employees.find((el)=> el.id === value.valueKey)})
-    // const new_array = []
-    // const new_employees = this.state.employees.find(el=> el.id === value.valueKey)
-    //
-    // console.log()
+    const employee_selected = this.state.employees.find(el=> el.id === value.id)
+    this.setState({currentEmployeeFiltered: employee_selected});
   }
+  //
+  // select_employee = (value) => {
+  //   this.setState((prevState)=>{
+  //     let new_employees_filtered = []
+  //     const employee_selected = prevState.employees.find(el=> el.id === value.valueKey)
+  //     new_employees_filtered.push(employee_selected)
+  //     return{
+  //       employees: new_employees_filtered
+  //     }
+  //   })
+  // }
 
   render(){
+    // <EmployeeHeader onAll={this.load_employees} onSelected={this.select_employee}/>
     return(
-        <div className="row" style={{'padding': '50px'}}>
+        <div className="row" style={{'padding': '24px'}}>
           <div className="col-xs-12">
             <RaisedButton label="Agregar" onClick={this.newEmployee} primary={true} className="button-add"/>
             <EmployeeDialog errors={this.state.errors} onError={this.handleErrors} onAdd={this.addEmployee} onModify={this.modifyEmployee} onDisable={this.disableEmployee} isEdit={this.state.isEdit} open={this.state.open} onClose={this.closeModal} currentEmployee={this.state.currentEmployee}></EmployeeDialog>
 
+
+
             <h2 >Lista de trabajadores </h2>
             <AutoComplete hintText="Busque por nombre" dataSource={this.state.dataSource} onUpdateInput={this.autocompleteText} onNewRequest={this.selectElementAutocomplete} dataSourceConfig={this.state.dataSourceConfig}/>
+            <RaisedButton label="Todos" onClick={this.load_employees} secondary={true} className="margin-left"/>
             <div className='container-colors'>
               <div className='employee-active'></div><span>Activados</span>
               <div className='employee-desactive'></div><span>Desactivados</span>
@@ -155,13 +169,17 @@ export default class EmployeeContainer extends React.Component{
                 </TableRow>
               </TableHeader>
               <TableBody displayRowCheckbox={false}>
-                {this.state.employees.map((employee) =>{
-                  return (<Employee employee={employee} key={employee.id} onEdit={this.editEmployee} onDisable={this.disableEmployee}/>)
-                })}
+                {!this.state.currentEmployeeFiltered.hasOwnProperty('id') ? (
+                    this.state.employees.map((employee) =>{
+                    return(<Employee employee={employee} key={employee.id} onEdit={this.editEmployee} onDisable={this.disableEmployee}/>)
+                    })
+                  ) : <Employee employee={this.state.currentEmployeeFiltered} key={this.state.currentEmployeeFiltered.id} onEdit={this.editEmployee} onDisable={this.disableEmployee}/>
+
+                }
               </TableBody>
-          </Table>
+            </Table>
+          </div>
         </div>
-      </div>
     )
   }
 }

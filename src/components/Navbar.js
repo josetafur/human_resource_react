@@ -5,7 +5,7 @@ export default class Navbar extends React.Component{
 
   render(){
     return(
-      <AppBar title="Logo" iconClassNameRight="muidocs-icon-navigation-expand-more" />
+      <AppBar title="Human Resource" iconClassNameRight="muidocs-icon-navigation-expand-more" showMenuIconButton={false}/>
     )
   }
 }

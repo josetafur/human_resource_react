@@ -53,17 +53,17 @@ export default class EmployeeForm extends React.Component{
           </div>
           <div className="col-xs">
             <div className="box">
-              <TextField floatingLabelText="Ingrese ocupación" value={this.state.job_position || ''} name="job_position" onChange={this.handleInput}/><br/>
+              <TextField floatingLabelText="Ingrese ocupación" value={this.state.job_position || ''} name="job_position" onChange={this.handleInput}/>
             </div>
           </div>
           <div className="col-xs">
             <div className="box">
-              <TextField floatingLabelText="Ingrese equipo" value={this.state.team || ''} name="team" onChange={this.handleInput} /><br/>
+              <TextField floatingLabelText="Ingrese equipo" value={this.state.team || ''} name="team" onChange={this.handleInput} />
             </div>
           </div>
           <div className="col-xs">
             <div className="box">
-              <TextField floatingLabelText="Ingrese teléfono" value={this.state.phone || ''} name="phone" onChange={this.handleInput} /><br/>
+              <TextField floatingLabelText="Ingrese teléfono" value={this.state.phone || ''} name="phone" onChange={this.handleInput} type="number"/>
             </div>
           </div>
         </div>
