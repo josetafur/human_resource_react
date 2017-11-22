@@ -29,6 +29,10 @@ export default class Employee extends Component{
                 <FontIcon className="material-icons">block</FontIcon>
             </IconButton>
           }
+
+          <IconButton onClick={this.props.onSkills(this.props.employee)} >
+            <FontIcon className="material-icons">list</FontIcon>
+          </IconButton>
         </TableRowColumn>
       </TableRow>
     )

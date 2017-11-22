@@ -3,8 +3,8 @@ import axios from 'axios';
 import Dialog from 'material-ui/Dialog';
 
 import EmployeeForm from './EmployeeForm';
-import ErrorNotification from './ErrorNotification';
-import domain from '../consts/domain';
+import ErrorNotification from '../ErrorNotification';
+import domain from '../../consts/domain';
 
 export default class EmployeeDialog extends React.Component{
 
