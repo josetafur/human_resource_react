@@ -4,14 +4,15 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 
 export default class EmployeeForm extends React.Component{
+
   constructor(props){
     super(props);
     this.state = {
-      name: this.props.currentEmployee.name,
-      last_name: this.props.currentEmployee.last_name,
-      job_position: this.props.currentEmployee.job_position,
-      team: this.props.currentEmployee.team,
-      phone: this.props.currentEmployee.phone
+      name: this.props.currentEmployee.name || '',
+      last_name: this.props.currentEmployee.last_name || '',
+      job_position: this.props.currentEmployee.job_position || '',
+      team: this.props.currentEmployee.team || '',
+      phone: this.props.currentEmployee.phone | ''
     }
   }
 
@@ -20,7 +21,6 @@ export default class EmployeeForm extends React.Component{
   }
 
   save = () => {
-    console.log(this.props.isEdit);
     const employee = {
       name: this.state.name,
       last_name: this.state.last_name,
@@ -34,7 +34,6 @@ export default class EmployeeForm extends React.Component{
     }else{
       this.props.onUpdate(employee)
     }
-
   }
 
   render(){

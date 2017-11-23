@@ -4,10 +4,6 @@ import FontIcon from 'material-ui/FontIcon';
 
 export default class Employee extends Component{
 
-  constructor(props){
-    super(props);
-  }
-
   render(){
     return(
       <TableRow key={this.props.employee.id} className={this.props.employee.state === 0 ? 'active' : 'desactive'}>
@@ -30,7 +26,7 @@ export default class Employee extends Component{
             </IconButton>
           }
 
-          <IconButton onClick={this.props.onSkills(this.props.employee)} >
+          <IconButton onClick={this.props.onListSkills(this.props.employee)} >
             <FontIcon className="material-icons">list</FontIcon>
           </IconButton>
         </TableRowColumn>

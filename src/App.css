@@ -42,7 +42,7 @@
   position: fixed;
   z-index: 9999;
   bottom: 5px;
-  right: 5px;
+  right: 24px;
 }
 
 .top-space{
@@ -83,4 +83,10 @@ table td, table th{
 
 .inline-block{
   display: inline-block;
+}
+
+.link-navigation{
+  text-decoration: none;
+  color: white;
+
 }

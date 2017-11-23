@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import Navbar from './components/Navbar';
-import EmployeeContainer from './pages/EmployeeContainer';
+import Employees from './pages/Employees';
 
 import './App.css';
 
@@ -12,7 +12,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div>
           <Navbar />
-          <EmployeeContainer />
+          {this.props.children}
         </div>
       </MuiThemeProvider>
     );

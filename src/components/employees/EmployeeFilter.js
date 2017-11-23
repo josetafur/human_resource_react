@@ -1,17 +1,26 @@
 import React from 'react';
 import axios from 'axios';
 
-import EmployeeSkill from './EmployeeSkill';
+import EmployeeFilterBySkill from './EmployeeFilterBySkill';
 import domain from '../../consts/domain';
 
-export default class EmployeeFilterSkills extends React.Component{
+export default class EmployeeFilter extends React.Component{
 
   constructor(props){
     super(props);
 
     this.state = {
-      skills: []
+      skills: [],
+      skillsFilters: []
     }
+  }
+
+  componentDidMount(){
+    axios.get(domain.local+"/api/v1/skills")
+    .then((response)=>{
+      this.setState({skillsFilters: response.data})
+    })
+    .catch(err=> console.log(err))
   }
 
   select_skill = (skill_id) =>{
@@ -43,14 +52,12 @@ export default class EmployeeFilterSkills extends React.Component{
   }
 
   render(){
-    const skills = [{id: 1,name: 'React'},{id: 2,name: 'Angular'},{id: 3,name: 'Polymer'},{id: 4,name: 'Vue'}]
 
     return(
       <div>
         <p>Filtra por habilidades:</p>
-
-        {skills.map((skill)=>{
-          return(<EmployeeSkill skill={skill} key={skill.id} onSelected={this.select_skill} onRemove={this.deselect_skill}/>)
+        {this.state.skillsFilters.map((skill)=>{
+          return(<EmployeeFilterBySkill skill={skill} key={skill.id} onSelected={this.select_skill} onRemove={this.deselect_skill}/>)
         })}
       </div>
     )

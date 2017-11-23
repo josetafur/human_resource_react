@@ -1,9 +1,8 @@
 import React from 'react';
-
 import Checkbox from 'material-ui/Checkbox';
 
 
-export default class EmployeeSkill extends React.Component{
+export default class EmployeeFilterBySkill extends React.Component{
 
   constructor(props){
     super(props);

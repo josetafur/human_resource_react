@@ -6,7 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 export default class EmployeeSkillForm extends React.Component{
 
   selected = (event,index,value)=>{
-    this.props.onSelected(value);
+    this.props.onSave(value,event.target.innerHTML);
   }
 
   render(){
@@ -14,7 +14,7 @@ export default class EmployeeSkillForm extends React.Component{
       <form>
         <div className="row">
           <div className="col-xs-12">
-            <SelectField floatingLabelText="Habilidad" value={this.props.currentSkillValue} onChange={this.selected}>
+            <SelectField floatingLabelText="Habilidad" value={this.props.currentSkillId} onChange={this.selected}>
               {this.props.skills.map((skill)=>{
                 return(<MenuItem key={skill.id} value={skill.id} primaryText={skill.name} />)
               })}

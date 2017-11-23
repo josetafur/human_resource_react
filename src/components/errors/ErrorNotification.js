@@ -1,5 +1,5 @@
 import React from 'react';
-import {redA400 } from 'material-ui/styles/colors';
+import {redA400} from 'material-ui/styles/colors';
 
 export default class ErrorNotification extends React.Component{
 
